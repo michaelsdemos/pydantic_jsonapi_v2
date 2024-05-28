@@ -1,16 +1,15 @@
 from typing import Generic, TypeVar, Optional, List, Any, Type, get_type_hints
 from typing_extensions import Literal
 
-from pydantic.generics import GenericModel
-
 from pydantic_jsonapi.filter import filter_none
 from pydantic_jsonapi.relationships import ResponseRelationshipsType
 from pydantic_jsonapi.resource_links import ResourceLinks
+from pydantic import BaseModel, ConfigDict
 
 
 TypeT = TypeVar('TypeT', bound=str)
 AttributesT = TypeVar('AttributesT')
-class ResponseDataModel(GenericModel, Generic[TypeT, AttributesT]):
+class ResponseDataModel(BaseModel, Generic[TypeT, AttributesT]):
     """
     """
     id: str
@@ -18,13 +17,11 @@ class ResponseDataModel(GenericModel, Generic[TypeT, AttributesT]):
     attributes: AttributesT = {}
     relationships: Optional[ResponseRelationshipsType]
     links: Optional[ResourceLinks]
-
-    class Config:
-        validate_all = True
+    model_config = ConfigDict(validate_default=True)
 
 
 DataT = TypeVar('DataT', bound=ResponseDataModel)
-class ResponseModel(GenericModel, Generic[DataT]):
+class ResponseModel(BaseModel, Generic[DataT]):
     """
     """
     data: DataT

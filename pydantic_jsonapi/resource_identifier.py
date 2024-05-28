@@ -9,4 +9,4 @@ class ResourceIdentifier(BaseModel):
     """
     id: str
     type: str
-    meta: Optional[dict]
+    meta: Optional[dict] = None

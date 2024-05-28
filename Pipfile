@@ -14,6 +14,7 @@ bumpversion = "*"
 
 [packages]
 pydantic-jsonapi = {editable = true,path = "."}
+bump-pydantic = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.11"

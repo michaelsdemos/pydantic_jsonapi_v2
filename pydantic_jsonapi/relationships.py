@@ -14,9 +14,9 @@ RequestRelationshipsType.__doc__ = "https://jsonapi.org/format/#crud-creating"
 
 
 class ResponseRelationshipModel(BaseModel):
-    links: Optional[ResourceLinks]
+    links: Optional[ResourceLinks] = None
     data: ResourceLinkage
-    meta: Optional[dict]
+    meta: Optional[dict] = None
 
 ResponseRelationshipsType = Mapping[str, ResponseRelationshipModel]
 ResponseRelationshipsType.__doc__ = "https://jsonapi.org/format/#document-resource-object-relationships"

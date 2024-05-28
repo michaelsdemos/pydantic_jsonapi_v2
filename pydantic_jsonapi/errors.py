@@ -6,20 +6,20 @@ from pydantic_jsonapi.resource_links import ResourceLinks
 
 
 class ErrorSource(BaseModel):
-    pointer: Optional[str]
-    parameter: Optional[str]
+    pointer: Optional[str] = None
+    parameter: Optional[str] = None
 
 
 class Error(BaseModel):
     """https://jsonapi.org/format/#error-objects"""
-    id: Optional[str]
-    links: Optional[ResourceLinks]
-    status: Optional[str]
-    code: Optional[str]
-    title: Optional[str]
-    detail: Optional[str]
-    source: Optional[ErrorSource]
-    meta: Optional[dict]
+    id: Optional[str] = None
+    links: Optional[ResourceLinks] = None
+    status: Optional[str] = None
+    code: Optional[str] = None
+    title: Optional[str] = None
+    detail: Optional[str] = None
+    source: Optional[ErrorSource] = None
+    meta: Optional[dict] = None
 
 
 class ErrorResponse(BaseModel):
