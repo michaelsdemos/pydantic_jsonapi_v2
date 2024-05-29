@@ -11,6 +11,13 @@ TypeT = TypeVar("TypeT", bound=str)
 AttributesT = TypeVar("AttributesT")
 
 
+def my_type_hints(obj: Any) -> Any:
+    class X:
+        x: obj
+
+    return get_type_hints(X)["x"]
+
+
 class ResponseDataModel(BaseModel, Generic[TypeT, AttributesT]):
     """ """
 
@@ -48,10 +55,11 @@ class ResponseModel(BaseModel, Generic[DataT]):
         relationships: Optional[dict] = None,
         links: Optional[dict] = None,
     ) -> ResponseDataModel:
-        data_type = get_type_hints(cls)["data"]
+        breakpoint()
+        data_type = my_type_hints(cls)["data"]
         if getattr(data_type, "__origin__", None) is list:
             data_type = data_type.__args__[0]
-        typename = get_type_hints(data_type)["type"].__args__[0]
+        typename = my_type_hints(data_type)["type"].__args__[0]
         return data_type(
             id=id,
             type=typename,

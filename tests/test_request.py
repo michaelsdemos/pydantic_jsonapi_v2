@@ -41,19 +41,25 @@ class TestJsonApiRequest:
 
         assert e.value.errors() == [
             {
+                "input": {},
                 "loc": ("data", "attributes", "name"),
                 "msg": "Field required",
                 "type": "missing",
+                "url": "https://errors.pydantic.dev/2.7/v/missing",
             },
             {
+                "input": {},
                 "loc": ("data", "attributes", "quantity"),
                 "msg": "Field required",
                 "type": "missing",
+                "url": "https://errors.pydantic.dev/2.7/v/missing",
             },
             {
+                "input": {},
                 "loc": ("data", "attributes", "price"),
                 "msg": "Field required",
                 "type": "missing",
+                "url": "https://errors.pydantic.dev/2.7/v/missing",
             },
         ]
 

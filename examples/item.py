@@ -23,30 +23,30 @@ class Item(BaseModel):
     quantity: int
     price: float
 
-ITEM_TYPE_NAME = 'item'
+
+ITEM_TYPE_NAME = "item"
 ItemRequest = JsonApiRequest(ITEM_TYPE_NAME, Item)
 ItemResponse = JsonApiResponse(ITEM_TYPE_NAME, Item)
+
 
 # Simple post method logic
 def item_post_method(item_request: ItemRequest) -> ItemResponse:
     attributes = item_request.data.attributes
     item_row = ItemData(**attributes.dict())
     return ItemResponse(
-        data=ItemResponse.resource_object(
-            id=item_row.id,
-            attributes=item_row
-        )
+        data=ItemResponse.resource_object(id=item_row.id, attributes=item_row)
     )
+
 
 # example request
 mock_request = {
-    'data': {
-        'type': 'item',
-        'attributes': {
-            'name': 'apple',
-            'quantity': 10,
-            'price': 1.20,
-        }
+    "data": {
+        "type": "item",
+        "attributes": {
+            "name": "apple",
+            "quantity": 10,
+            "price": 1.20,
+        },
     }
 }
 response = item_post_method(ItemRequest(**mock_request))
